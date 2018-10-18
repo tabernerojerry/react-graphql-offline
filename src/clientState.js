@@ -1,4 +1,5 @@
-import { NoteFragment } from "./fragments";
+import { NOTE_FRAGMENT } from "./fragments";
+import { GET_NOTES } from "./queries";
 
 export const defaults = {
   notes: [
@@ -43,8 +44,8 @@ export const typeDefs = [
   }
 
   type Mutation {
-    createNote(input: CreateNoteInput!): Boolean
-    editNote(input: EditNoteInput!): Boolean
+    createNote(input: CreateNoteInput!): Note
+    editNote(input: EditNoteInput!): Note
   }
 `
 ];
@@ -62,11 +63,38 @@ export const resolvers = {
       });
 
       const note = await cache.readFragment({
-        fragment: NoteFragment,
+        fragment: NOTE_FRAGMENT,
         id: noteId
       });
 
       return note;
+    }
+  },
+
+  Mutation: {
+    createNote: async (_, { input }, { cache }) => {
+      // Get data from cache
+      const { notes } = await cache.readQuery({
+        query: GET_NOTES
+      });
+      console.log(notes);
+
+      // New Note Data
+      const newNote = {
+        __typename: "Note",
+        id: notes.length + 1,
+        title: input.title,
+        content: input.content
+      };
+
+      // Create Data
+      cache.writeData({
+        data: {
+          notes: [newNote, ...notes]
+        }
+      });
+
+      return newNote;
     }
   }
 };
