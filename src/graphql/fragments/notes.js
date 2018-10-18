@@ -1,9 +1,11 @@
 import gql from "graphql-tag";
 
-export const NOTE_FRAGMENT = gql`
+const NOTE_FRAGMENT = gql`
   fragment NoteInfo on Note {
     id
     title
     content
   }
 `;
+
+export default NOTE_FRAGMENT;

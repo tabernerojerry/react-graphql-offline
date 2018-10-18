@@ -1,57 +1,7 @@
-import { NOTE_FRAGMENT } from "./fragments";
-import { GET_NOTES } from "./queries";
+import { NOTE_FRAGMENT } from "../fragments";
+import { GET_NOTES } from "../queries";
 
-export const defaults = {
-  notes: [
-    {
-      id: 1,
-      title: "First Title",
-      content: "First Content",
-      __typename: "Note"
-    }
-  ],
-  hello: ""
-};
-
-export const typeDefs = [
-  `
-  schema {
-    query: Query
-    mutation: Mutation
-  }
-
-  type Note {
-    id: Int!
-    title: String!
-    content: String!
-  }
-
-  input CreateNoteInput {
-    title: String!
-    content: String!
-  }
-
-  input EditNoteInput {
-    id: Int!
-    title: String!
-    content: String!
-  }
-
-  type Query {
-    hello: String
-    notes: [Note!]
-    note(id: Int!): Note
-  }
-
-  type Mutation {
-    createNote(input: CreateNoteInput!): Note
-    editNote(input: EditNoteInput!): Note
-  }
-`
-];
-
-// Serve as graphql server
-export const resolvers = {
+export default {
   Query: {
     hello: () => "Hello World",
 
