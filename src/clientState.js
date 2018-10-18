@@ -77,7 +77,7 @@ export const resolvers = {
       const { notes } = await cache.readQuery({
         query: GET_NOTES
       });
-      console.log(notes);
+      //console.log(notes);
 
       // New Note Data
       const newNote = {
@@ -95,6 +95,30 @@ export const resolvers = {
       });
 
       return newNote;
+    },
+
+    editNote: async (_, { input }, { cache }) => {
+      // Get Data ID from cache
+      const id = await cache.config.dataIdFromObject({
+        __typename: "Note",
+        id: input.id
+      });
+
+      const note = await cache.readFragment({ fragment: NOTE_FRAGMENT, id });
+
+      const updatedNote = {
+        ...note,
+        title: input.title,
+        content: input.content
+      };
+
+      cache.writeFragment({
+        id,
+        fragment: NOTE_FRAGMENT,
+        data: updatedNote
+      });
+
+      return updatedNote;
     }
   }
 };
