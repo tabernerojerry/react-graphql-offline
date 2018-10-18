@@ -6,11 +6,11 @@ import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js";
 
 import client from "./ApolloClient";
-import App from "./App.js";
+import Router from "./components/Router.js";
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <Router />
   </ApolloProvider>,
   document.getElementById("root")
 );
