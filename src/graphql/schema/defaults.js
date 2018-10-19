@@ -1,11 +1,6 @@
+import { restoreNotes } from "../offline";
+
 export default {
-  notes: [
-    {
-      id: 1,
-      title: "First Title",
-      content: "First Content",
-      __typename: "Note"
-    }
-  ],
+  notes: restoreNotes(),
   hello: ""
 };

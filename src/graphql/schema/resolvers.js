@@ -1,5 +1,6 @@
 import { NOTE_FRAGMENT } from "../fragments";
 import { GET_NOTES } from "../queries";
+import { saveNotes } from "../offline";
 
 export default {
   Query: {
@@ -44,6 +45,9 @@ export default {
         }
       });
 
+      // save on localstorage
+      saveNotes(cache);
+
       return newNote;
     },
 
@@ -67,6 +71,9 @@ export default {
         fragment: NOTE_FRAGMENT,
         data: updatedNote
       });
+
+      // save on localstorage
+      saveNotes(cache);
 
       return updatedNote;
     }

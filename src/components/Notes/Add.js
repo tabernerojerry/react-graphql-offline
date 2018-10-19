@@ -1,9 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
+import { Mutation } from "react-apollo";
 
-class Add extends Component {
-  render() {
-    return <h1>Add</h1>;
-  }
-}
+import Editor from "./Editor";
+import { CREATE_NOTE } from "../../graphql/queries";
+
+const onSave = ({ createNote, history }) => input => {
+  // save note
+  createNote({ variables: { input } });
+
+  // redirect to notes page
+  history.push("/");
+};
+
+const Add = ({ history }) => (
+  <Mutation mutation={CREATE_NOTE}>
+    {createNote => <Editor onSave={onSave({ createNote, history })} />}
+  </Mutation>
+);
 
 export default Add;

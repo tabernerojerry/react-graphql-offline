@@ -10,14 +10,22 @@ class Notes extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8">
-            <h1>Dev Notes</h1>
+            <h1>
+              Dev Notes{" "}
+              <Link
+                to="/add"
+                className="btn-floating btn-large orange darken-1"
+              >
+                <i className="material-icons">add</i>
+              </Link>
+            </h1>
             <h5 className="grey-text">Taking notes for project app.</h5>
             <Query query={GET_NOTES}>
               {({ data }) =>
                 data && data.notes
                   ? data.notes.map(note => (
                       <div className="col s4" key={note.id}>
-                        <Link to={`/edit/${note.id}`} className="white-text">
+                        <Link to={`/note/${note.id}`} className="white-text">
                           <div className="card-panel teal">{note.title}</div>
                         </Link>
                       </div>
