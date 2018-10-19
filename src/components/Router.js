@@ -7,17 +7,17 @@ class Router extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Notes} />
-            <Route path="/add" component={Add} />
-            <Route path="/edit/:id" component={Edit} />
-            <Route path="/note/:id" component={Note} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={Notes} />
+          <Route path="/add" component={Add} />
+          <Route path="/edit/:id" component={Edit} />
+          <Route path="/note/:id" component={Note} />
+        </Switch>
       </BrowserRouter>
     );
   }
 }
 
 export default Router;
+
+// NEXT : #1.9
