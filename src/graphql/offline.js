@@ -1,5 +1,6 @@
 import { GET_NOTES } from "./queries";
 
+// Save Notes to localStorage
 export const saveNotes = cache => {
   const { notes } = cache.readQuery({ query: GET_NOTES });
 
@@ -10,6 +11,7 @@ export const saveNotes = cache => {
   }
 };
 
+// Get Notes to localStorage
 export const restoreNotes = () => {
   const notes = localStorage.getItem("notes");
 

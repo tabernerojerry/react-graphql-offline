@@ -1,3 +1,9 @@
-import { CREATE_NOTE, GET_NOTES, GET_NOTE, EDIT_NOTE } from "./notes";
+import {
+  CREATE_NOTE,
+  GET_NOTES,
+  GET_NOTE,
+  EDIT_NOTE,
+  DELETE_NOTE
+} from "./notes";
 
-export { CREATE_NOTE, GET_NOTES, GET_NOTE, EDIT_NOTE };
+export { CREATE_NOTE, GET_NOTES, GET_NOTE, EDIT_NOTE, DELETE_NOTE };

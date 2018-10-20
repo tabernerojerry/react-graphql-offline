@@ -66,6 +66,7 @@ export default {
         content: input.content
       };
 
+      // Update Note Data
       cache.writeFragment({
         id,
         fragment: NOTE_FRAGMENT,
@@ -76,6 +77,23 @@ export default {
       saveNotes(cache);
 
       return updatedNote;
+    },
+
+    deleteNote: async (_, { id }, { cache }) => {
+      // Get data from cache
+      const { notes } = await cache.readQuery({
+        query: GET_NOTES
+      });
+
+      // Update Cache
+      cache.writeQuery({
+        query: GET_NOTES,
+        data: { notes: notes.filter(note => note.id !== id) }
+      });
+
+      saveNotes(cache);
+
+      return true;
     }
   }
 };

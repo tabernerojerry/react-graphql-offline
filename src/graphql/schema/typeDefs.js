@@ -31,6 +31,7 @@ export default [
   type Mutation {
     createNote(input: CreateNoteInput!): Note
     editNote(input: EditNoteInput!): Note
+    deleteNote(id: Int!): Boolean
   }
 `
 ];

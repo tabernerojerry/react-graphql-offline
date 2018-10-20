@@ -41,3 +41,9 @@ export const GET_NOTE = gql`
 
   ${NOTE_FRAGMENT}
 `;
+
+export const DELETE_NOTE = gql`
+  mutation DeleteNote($id: id) {
+    deleteNote(id: $id) @client
+  }
+`;

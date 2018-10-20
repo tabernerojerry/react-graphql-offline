@@ -11,8 +11,10 @@ class Editor extends Component {
     content: this.props.content || ""
   };
 
+  // Handle Input Change
   _onChange = ({ target: { name, value } }) => this.setState({ [name]: value });
 
+  // Handle Form Submit
   _onSubmit = event => {
     event.preventDefault();
 
@@ -40,7 +42,7 @@ class Editor extends Component {
             <form onSubmit={this._onSubmit}>
               <h1 className="grey-text">{!id ? "Add Note" : "Edit Note"}</h1>
 
-              <div className="input-field col s10">
+              <div className="input-field col s12 m10">
                 <input
                   type="text"
                   name="title"
@@ -52,7 +54,7 @@ class Editor extends Component {
                 />
               </div>
 
-              <div className="input-field col s2">
+              <div className="input-field col m2 hide-on-small-only">
                 <button
                   type="submit"
                   className="btn btn-large orange darken-1 right"
@@ -61,7 +63,7 @@ class Editor extends Component {
                 </button>
               </div>
 
-              <div className="input-field col s6">
+              <div className="input-field col s12 m6">
                 <textarea
                   name="content"
                   id="content"
@@ -73,9 +75,22 @@ class Editor extends Component {
                 />
               </div>
 
-              <div className="input-field col s6">
+              <div className="input-field col s12 m6">
                 <ReactMarkdown source={content} />
               </div>
+
+              <button
+                type="submit"
+                className="btn orange darken-1 right hide-on-med-and-up"
+                style={{
+                  bottom: "20px",
+                  right: "20px",
+                  position: "fixed",
+                  zIndex: "999"
+                }}
+              >
+                Save
+              </button>
             </form>
           </div>
         </div>
